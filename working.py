@@ -47,6 +47,7 @@ y_pred = (model.predict(X_test) > 0.5).astype(int)
 accuracy = accuracy_score(y_test, y_pred)
 confusion = confusion_matrix(y_test, y_pred)
 
+model.save("home.h5")
 print(f'Accuracy: {accuracy}')
 print(f'Confusion Matrix:\n{confusion}')
 

@@ -54,11 +54,11 @@
 
             // Apply the sigmoid activation function
             const sigmoid = (x) => 1 / (1 + Math.exp(-x));
-            const predictionValue = sigmoid(predictions.dataSync()[0]);
+            const predictionValue = predictions.dataSync()[0];
 
             // Display the predictions or use them as needed
             const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = `Predicted Loan Status: ${predictionValue.toFixed(2)}`; // Display with two decimal places
+            outputDiv.innerHTML = `Predicted Loan Status: ${predictionValue.toFixed(10)}`; // Display with two decimal places
         }
 
         // Call the loadModel function to load the model when the page loads

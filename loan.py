@@ -34,7 +34,7 @@ model = tf.keras.Sequential([
     tf.keras.layers.Dense(20, activation='swish', input_shape=(X_train.shape[1],)),
     tf.keras.layers.Dense(15, activation='swish'),
     tf.keras.layers.Dense(10, activation='tanh'),
-    tf.keras.layers.Dense(1, activation='sigmoid')
+    tf.keras.layers.Dense(1, activation='sigmoid')  # Change activation to 'sigmoid'
 ])
 
 # Compile the model
@@ -44,13 +44,9 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 history = model.fit(X_train, y_train, epochs=10000, batch_size=1000, validation_data=(X_test, y_test))
 
 # Evaluate the model
-y_pred = (model.predict(X_test) > 0.5).astype(int)
-accuracy = accuracy_score(y_test, y_pred)
-confusion = confusion_matrix(y_test, y_pred)
-model.save('testing.h5')
-print(f'Accuracy: {accuracy}')
-print(f'Confusion Matrix:\n{confusion}')
+y_prob = model.predict(X_test)  # This will give you probabilities between 0 and 1
 
+model.save('best.h5')
 # Plot training & validation accuracy values
 plt.figure(figsize=(10, 6))
 plt.plot(history.history['accuracy'], label='Train Accuracy')
